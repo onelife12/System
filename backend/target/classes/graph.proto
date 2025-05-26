@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+// 导入 Google 的 Empty 消息类型
+import "google/protobuf/empty.proto";
+
+package graph;
+
+// 定义三元组消息
+message Triple {
+    repeated string source = 1;
+    repeated string relation = 2;
+    repeated string target = 3;
+}
+
+// 定义三元组列表消息
+message TripleList {
+    repeated Triple triples = 1;
+}
+
+// 定义图服务
+service GraphService {
+    // 获取三元组列表
+    rpc GetTriples(google.protobuf.Empty) returns (TripleList);
+}
